@@ -36,7 +36,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ),
                       child: Center(
                         child: Text(
-                          'Tipsy',
+                          'Tip',
                           style: GoogleFonts.pacifico(
                             textStyle: const TextStyle(
                               color: titleColor,
