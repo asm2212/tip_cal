@@ -10,6 +10,7 @@ class TipButton extends ConsumerWidget {
   final bool isPill;
   final Tip label;
   final Tip currentTip;
+
   const TipButton({
     required this.text,
     required this.label,
@@ -20,8 +21,8 @@ class TipButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const int width = 70;
-    final double buttonWidth = width * (isPill ? 2.2 : 1);
+    const int baseWidth = 70;
+    final double buttonWidth = baseWidth * (isPill ? 2.2 : 1);
     final bool isActive = label == currentTip;
 
     return GestureDetector(
@@ -45,19 +46,13 @@ class TipButton extends ConsumerWidget {
                   textAlign: TextAlign.center,
                   textAlignVertical: TextAlignVertical.top,
                   onChanged: (value) {
-                    ref.read(customTipButtonContentsProvider.notifier).state =
-                        value;
                     final numValue = double.tryParse(value);
-                    ref.read(tipProvider.notifier).state.customPercentage =
-                        numValue ?? 0.0;
-                    ref.read(customTipPercentageProvider.notifier).state =
-                        numValue ?? 0.0;
-                    ref.read(customTipButtonIsActiveProvider.notifier).state =
-                        true;
+                    ref.read(customTipButtonContentsProvider.notifier).state = value;
+                    ref.read(tipProvider.notifier).state.customPercentage = numValue ?? 0.0;
+                    ref.read(customTipPercentageProvider.notifier).state = numValue ?? 0.0;
+                    ref.read(customTipButtonIsActiveProvider.notifier).state = true;
                   },
-                  onTap: () => ref
-                      .read(customTipButtonIsActiveProvider.notifier)
-                      .state = true,
+                  onTap: () => ref.read(customTipButtonIsActiveProvider.notifier).state = true,
                 )
               : Text(
                   '$text%',

@@ -10,12 +10,10 @@ class ChoosePillWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTip = ref.watch(tipProvider);
-    final String? customTip =
-        ref.watch(customTipButtonContentsProvider.notifier).state;
+    final String? customTip = ref.watch(customTipButtonContentsProvider);
 
     return SizedBox(
       width: 250,
-      // height: 100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -41,12 +39,16 @@ class ChoosePillWidget extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               TipButton(
-                  text: "25", label: Tip.twentyFive, currentTip: currentTip),
+                text: "25", 
+                label: Tip.twentyFive, 
+                currentTip: currentTip,
+              ),
               TipButton(
-                  text: customTip ?? "Custom tip",
-                  isPill: true,
-                  label: Tip.custom,
-                  currentTip: currentTip),
+                text: customTip ?? "Custom tip",
+                isPill: true,
+                label: Tip.custom,
+                currentTip: currentTip,
+              ),
             ],
           ),
         ],
