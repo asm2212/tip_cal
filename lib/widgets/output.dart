@@ -10,13 +10,11 @@ class OutputWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final totalBill = ref.watch(totalBillProvider);
-
     final customTipPercentage = ref.watch(customTipPercentageProvider) / 100;
     final customTipButtonIsActive = ref.watch(customTipButtonIsActiveProvider);
     final tipPercentage = ref.watch(tipProvider).percentage;
     final finalTipPercentage =
         customTipButtonIsActive ? customTipPercentage : tipPercentage;
-
     final splitCount = ref.watch(splitCounterProvider);
 
     final tipPerPerson = (totalBill * finalTipPercentage) / splitCount;
@@ -48,7 +46,7 @@ class OutputWidget extends ConsumerWidget {
                   ),
                 ),
                 Text(
-                  '\$ ${totalAmountPerPerson.toStringAsFixed(2)}',
+                  '${totalAmountPerPerson.toStringAsFixed(2)} ETB',
                   style: const TextStyle(
                     color: textColor,
                     fontFamily: 'Karmilla',
@@ -66,7 +64,7 @@ class OutputWidget extends ConsumerWidget {
                 Column(
                   children: [
                     Text(
-                      'bill',
+                      'Bill',
                       style: TextStyle(
                         color: Colors.grey[600],
                         fontSize: 18,
@@ -74,7 +72,7 @@ class OutputWidget extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      '\$ ${billPerPerson.toStringAsFixed(2)}',
+                      '${billPerPerson.toStringAsFixed(2)} ETB',
                       style: const TextStyle(
                         color: textColor,
                         fontFamily: 'Karmilla',
@@ -88,7 +86,7 @@ class OutputWidget extends ConsumerWidget {
                 Column(
                   children: [
                     Text(
-                      'tip',
+                      'Tip',
                       style: TextStyle(
                         color: Colors.grey[600],
                         fontSize: 18,
@@ -96,7 +94,7 @@ class OutputWidget extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      '\$ ${tipPerPerson.toStringAsFixed(2)}',
+                      '${tipPerPerson.toStringAsFixed(2)} ETB',
                       style: const TextStyle(
                         color: textColor,
                         fontFamily: 'Karmilla',

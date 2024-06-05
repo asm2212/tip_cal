@@ -9,9 +9,7 @@ class EnterBillWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
-      // margin: const EdgeInsets.only(top: 30, left: 60, right: 60),
       width: 250,
-      // height: 100,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -28,14 +26,8 @@ class EnterBillWidget extends ConsumerWidget {
             child: SizedBox(
               width: 150,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.attach_money_rounded,
-                    size: 25,
-                    color: textColor,
-                  ),
                   Expanded(
                     child: TextField(
                       keyboardType: TextInputType.number,
@@ -47,21 +39,23 @@ class EnterBillWidget extends ConsumerWidget {
                         letterSpacing: 0.5,
                       ),
                       onChanged: (value) {
-                        print(value);
-
                         ref.read(totalBillProvider.notifier).state =
                             double.tryParse(value) ?? 0.0;
                       },
                       decoration: const InputDecoration(
-                        // icon: Icon(
-                        //   Icons.attach_money_rounded,
-                        //   size: 25,
-                        //   color: textColor,
-                        // ),
                         hintText: "59.46",
                         border: UnderlineInputBorder(),
                       ),
                       expands: false,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'ETB',
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
